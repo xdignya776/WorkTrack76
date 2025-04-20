@@ -1,0 +1,24 @@
+
+# Config file for Netlify deployment
+
+# This rule ensures that all routes are handled by the index.html file
+# This is necessary for single-page applications with client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Properly handle APK files with the correct MIME type
+[[headers]]
+  for = "/download/*.apk"
+  [headers.values]
+    Content-Type = "application/vnd.android.package-archive"
+    Content-Disposition = "attachment"
+
+# Add security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"

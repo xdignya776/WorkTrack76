@@ -1,0 +1,177 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 99%;
+    --foreground: 210 40% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 40% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 40% 10%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 210 40% 30%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 210 40% 50%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 210 40% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 40% 90%;
+    --input: 210 40% 90%;
+    --ring: 210 100% 50%;
+
+    --radius: 0.625rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 210 40% 20%;
+    --sidebar-primary: 210 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 210 40% 20%;
+    --sidebar-border: 210 40% 90%;
+    --sidebar-ring: 210 100% 50%;
+  }
+
+  .dark {
+    --background: 210 50% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 210 50% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 50% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 20%;
+    --muted-foreground: 210 40% 60%;
+
+    --accent: 210 40% 20%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 40.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 40% 20%;
+    --input: 210 40% 20%;
+    --ring: 210 100% 60%;
+
+    --sidebar-background: 210 50% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 16%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 210 40% 20%;
+    --sidebar-ring: 210 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+@layer components {
+  .glass-morph {
+    @apply bg-white/90 dark:bg-black/70 backdrop-blur-md border border-white/20 dark:border-black/20 shadow-lg;
+  }
+  
+  .neo-morph {
+    @apply bg-white dark:bg-slate-900 shadow-[6px_6px_12px_#d9d9d9,_-6px_-6px_12px_#ffffff] dark:shadow-[6px_6px_12px_#0a101f,_-6px_-6px_12px_#141e3b];
+  }
+  
+  .slide-in-from-right {
+    animation: slide-in-from-right 0.4s ease-out forwards;
+  }
+  
+  .slide-in-from-left {
+    animation: slide-in-from-left 0.4s ease-out forwards;
+  }
+  
+  @keyframes slide-in-from-right {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-in-from-left {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Staggered animation helper classes */
+  .stagger-1 { animation-delay: 100ms; }
+  .stagger-2 { animation-delay: 200ms; }
+  .stagger-3 { animation-delay: 300ms; }
+  .stagger-4 { animation-delay: 400ms; }
+  .stagger-5 { animation-delay: 500ms; }
+
+  /* Button hover effects */
+  .button-hover-effect {
+    @apply relative overflow-hidden transition-all duration-300 ease-in-out;
+  }
+  
+  .button-hover-effect::after {
+    content: '';
+    @apply absolute top-0 left-0 right-0 bottom-0 bg-white opacity-0 transition-opacity duration-300 ease-in-out;
+  }
+  
+  .button-hover-effect:hover::after {
+    @apply opacity-20;
+  }
+}
